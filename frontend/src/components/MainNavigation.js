@@ -12,15 +12,6 @@ function MainNavigation() {
           <li>
             <NavLink to="/events" className={({isActive}) => isActive ? classes.active : undefined} end>Events</NavLink>
           </li>
-          <li>
-            <NavLink to="/events/1">Event Details</NavLink>
-          </li>
-           <li>
-            <NavLink to="/events/new">New Event</NavLink>
-          </li>
-           <li>
-            <NavLink to="/events/1/edit">Update Event</NavLink>
-          </li>
         </ul>
       </nav>
     </header>
