@@ -33,7 +33,7 @@ export async function events() {
     -No need to pass as props if you call it in children
     -It only works for the current route's loader, not sibling or parent routes
   */
-  const response = await fetch('http://localhost:8080/eventsaasdasd');
+  const response = await fetch('http://localhost:8080/events');
     if (!response.ok) {
       /* 
         In case an error is thrown in the loader function, the error bubbles up to the closest ErrorElement defined in the route config.
