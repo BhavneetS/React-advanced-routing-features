@@ -1,35 +1,22 @@
-import { useEffect, useState } from 'react';
-
+import { useLoaderData } from 'react-router-dom';
 import EventsList from '../components/EventsList';
 
 function EventsPage() {
-  const [isLoading, setIsLoading] = useState(false);
-  const [fetchedEvents, setFetchedEvents] = useState();
-  const [error, setError] = useState();
 
-  useEffect(() => {
-    async function fetchEvents() {
-      setIsLoading(true);
-      const response = await fetch('http://localhost:8080/events');
+  /* 
+    Although we are returing a Promise from the loader function in the route via async function, 
+    react-router passes the resolved data to the element/component
+  */
+  // const events = useLoaderData();
 
-      if (!response.ok) {
-        setError('Fetching events failed.');
-      } else {
-        const resData = await response.json();
-        setFetchedEvents(resData.events);
-      }
-      setIsLoading(false);
-    }
-
-    fetchEvents();
-  }, []);
   return (
     <>
-      <div style={{ textAlign: 'center' }}>
-        {isLoading && <p>Loading...</p>}
-        {error && <p>{error}</p>}
-      </div>
-      {!isLoading && fetchedEvents && <EventsList events={fetchedEvents} />}
+      {/*
+        In place of passing the events form here to the EventsList component, we can resolve it directly in the EventsList Component as it is in the same tree.
+      */}
+      
+      <EventsList />  
+      {/* <EventsList events={events} /> */}
     </>
   );
 }
