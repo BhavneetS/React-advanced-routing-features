@@ -14,12 +14,19 @@ const route = createBrowserRouter([
   element: <RootLayout />,
   errorElement: <ErrorPage/>,
   children: [
-     {path: '/', element: <HomePage />},
-      {path: '/events', element: <EventsLayout />, children:[
-        {path: '', element: <EventsPage />, loader: events},
-        {path: ':id', element: <EventDetailsPage/>, loader: loader},
+      {path: '/', element: <HomePage />},
+      {path: '/events', element: <EventsLayout />, 
+        children:[
+          { index: true, element: <EventsPage />, loader: events},
+          { path: ':id',
+            loader: loader,
+            id:'events-section',
+            children:[
+              {path:'', element: <EventDetailsPage/>},
+              {path: 'edit', element: <EditEventPage />}
+            ]
+        },
         {path: 'new', element: <NewEventPage />},
-        {path: ':id/edit', element: <EditEventPage />}
       ]},
       
     ]
