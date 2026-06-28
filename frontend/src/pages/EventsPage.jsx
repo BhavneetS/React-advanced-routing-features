@@ -38,7 +38,9 @@ export async function events() {
       /* 
         In case an error is thrown in the loader function, the error bubbles up to the closest ErrorElement defined in the route config.
       */
-      throw {message: 'An error has occured'};
+      throw new Response(JSON.stringify({message: 'Could not fetch events.'}), {
+        status: 500
+      });
     } else {
       const resData = await response.json();
       return resData.events;
