@@ -1,4 +1,4 @@
-import { Form, useNavigate, useNavigation } from 'react-router-dom';
+import { Form, useActionData, useNavigate, useNavigation } from 'react-router-dom';
 
 import classes from './EventForm.module.css';
 
@@ -6,6 +6,7 @@ function EventForm({ method, event }) {
   const navigate = useNavigate();
 
   const navigationStatus = useNavigation();
+  const saveFormActionData = useActionData();
 
   /* 
     navigation is also triggered when submitting a form, Hence we can use the useNavigation Route to check the form submitting status.
@@ -24,9 +25,16 @@ function EventForm({ method, event }) {
        <Form method='POST' className={classes.form} action="/any-other-path">
     */
     <Form method='POST' className={classes.form}>
+      {saveFormActionData && saveFormActionData.errors && (
+        <ul>
+          {Object.values(saveFormActionData.errors).map((err) => {
+            return <li key={err}>{err}</li>
+          })}
+        </ul>
+      )}
       <p>
         <label htmlFor="title">Title</label>
-        <input id="title" type="text" name="title" required defaultValue={event?.title}/>
+        <input id="title" type="text" name="title" defaultValue={event?.title}/>
       </p>
       <p>
         <label htmlFor="image">Image</label>

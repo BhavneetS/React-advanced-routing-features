@@ -29,6 +29,16 @@ export async function action({request, params}) {
         }
     })
 
+     /* 
+        Data returned from the action function can be captured using the useActionData() hook.
+        useActionData() hook gives access to the data retruned by the cloeset action to the route
+    
+        If a route has an action and that action returns a value, useActionData() in the route component (or a child of that route) will receive that value.
+      */
+      if(response.status === 422) {
+        return response;
+      }
+
     if(!response.ok) {
         throw new Response(JSON.stringify({message: 'data not submitted'}), {status: 500});
     }
