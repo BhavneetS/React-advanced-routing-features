@@ -11,7 +11,10 @@ function EventForm({ method, event }) {
   return (
     /* 
       The Form component does not require a reference to the Action Function by default because the event is fired to the active route.
-      Since we have the action function referenced from the route, the formData is made availbale to the action Function by the react Router.
+      Since we have the action function referenced from the route, the formData is made available to the action Function by the react Router.
+
+      In order to send data to the action of any other route, we can add the action attribute to the FORM with the value of the route who's action we would like to send data to.
+       <Form method='POST' className={classes.form} action="/any-other-path">
     */
     <Form method='POST' className={classes.form}>
       <p>

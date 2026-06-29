@@ -7,6 +7,7 @@ import EditEventPage from "./pages/EditEventPage";
 import RootLayout from "./pages/RootLayout";
 import EventsLayout from "./pages/EventsLayout";
 import ErrorPage from "./components/Error";
+import { deleteAction } from "./components/EventItem";
 
 const route = createBrowserRouter([
   {
@@ -22,7 +23,15 @@ const route = createBrowserRouter([
             loader: loader,
             id:'events-section',
             children:[
-              {path:'', element: <EventDetailsPage/>},
+              /* 
+                When using path:'' in palce of index, the react router does not resolve the route to be same as the parent route.
+                index: true marks a route as the default child for its parent and matches exactly when the parent path is active, so React Router treats it as the canonical content for that URL.
+                path: '' defines an explicit empty-path child route, which is not the same special default route and can behave differently during matching and data-router resolution.
+
+                hence, with path:'' the action is resolved at the parent
+                with index: true, the action is resolved at the child route itself
+              */
+              {index:true, element: <EventDetailsPage/>, action: deleteAction,},
               {path: 'edit', element: <EditEventPage />}
             ]
         },
