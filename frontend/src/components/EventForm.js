@@ -34,7 +34,7 @@ function EventForm({ method, event }) {
       )}
       <p>
         <label htmlFor="title">Title</label>
-        <input id="title" type="text" name="title" defaultValue={event?.title}/>
+        <input id="title" type="text" name="title" required defaultValue={event?.title}/>
       </p>
       <p>
         <label htmlFor="image">Image</label>
